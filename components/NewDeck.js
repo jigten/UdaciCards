@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
 } from 'react-native'
+import { saveDeckTitle, getDecks } from '../utils/api'
 
 export default class NewDeck extends Component {
   state = {
@@ -14,7 +15,10 @@ export default class NewDeck extends Component {
   }
 
   createDeck = () => {
-    console.log(this.state.title)
+    const { title } = this.state
+    saveDeckTitle(title)
+      .then(getDecks)
+      .then((decks) => console.log(decks))
   }
 
   render() {
