@@ -17,13 +17,12 @@ export default class NewDeck extends Component {
   createDeck = () => {
     const { title } = this.state
     saveDeckTitle(title)
-      .then(getDecks)
-      .then((decks) => console.log(decks))
+      .then(() => this.setState({ title: '' }))
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.headerText}>
           What is the title of your new deck?
         </Text>
@@ -40,7 +39,7 @@ export default class NewDeck extends Component {
             Submit
           </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
