@@ -14,3 +14,7 @@ export function saveDeckTitle (title) {
     }
   }))
 }
+
+export function clearDecks () {
+  return AsyncStorage.removeItem(DECK_STORAGE_KEY)
+}

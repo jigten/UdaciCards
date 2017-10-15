@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { getDecks } from '../utils/api'
+import { getDecks, clearDecks } from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { AppLoading } from 'expo'
@@ -26,8 +26,12 @@ class DeckList extends Component {
 
     console.log(this.props)
 
-    if(ready === false) {
+    if (ready === false) {
       return <AppLoading />
+    }
+
+    if (decks && Object.keys(decks).length === 0) {
+      return <Text>Please start by creating a new deck.</Text>
     }
 
     return (
