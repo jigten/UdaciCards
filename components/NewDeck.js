@@ -8,6 +8,7 @@ import {
   TextInput,
 } from 'react-native'
 import { saveDeckTitle, getDecks } from '../utils/api'
+import { black } from '../utils/colors'
 
 export default class NewDeck extends Component {
   state = {
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   titleInput: {
     height: 50,
     width: 250,
-    borderColor: 'black',
+    borderColor: black,
     borderWidth: 2,
     borderRadius: 4,
   },
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 55,
     width: 100,
-    backgroundColor: 'black',
+    backgroundColor: black,
     alignSelf: 'center',
     borderRadius: 5,
   },

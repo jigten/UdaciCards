@@ -1,13 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { TabNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Constants } from 'expo'
+import { yellow, white, black } from './utils/colors'
 
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList'
+
+function CustomStatusBar({ backgroundColor, ...props}) {
+  return(
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -29,10 +39,10 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: 'yellow',
+    activeTintColor: black,
     style: {
       height: 56,
-      backgroundColor: 'white',
+      backgroundColor: white,
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -48,17 +58,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
-        <Tabs />
+        <View style={{flex: 1}}>
+          <CustomStatusBar backgroundColor={white} bar-style='light-content' />
+          <Tabs />
+        </View>
       </Provider>
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
