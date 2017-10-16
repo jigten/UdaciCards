@@ -5,6 +5,12 @@ import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { AppLoading } from 'expo'
 
+function Deck (deck) {
+  return (
+    <View><Text>{JSON.stringify(deck)}</Text></View>
+  )
+}
+
 class DeckList extends Component {
   state = {
     ready: false
@@ -12,6 +18,7 @@ class DeckList extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
+
     getDecks()
       .then((decks) => dispatch(receiveDecks(decks)))
       .then(() => this.setState(() => ({
@@ -23,31 +30,42 @@ class DeckList extends Component {
     const { decks } = this.props
     const { ready } = this.state
 
-    console.log(this.props)
-
     if (ready === false) {
       return <AppLoading />
     }
 
-    if (decks && Object.keys(decks).length === 0) {
-      return <Text>Please start by creating a new deck.</Text>
+    if (ready && decks.length === 0) {
+      return <Text style={styles.defaultText}>Please start by creating a new deck.</Text>
     }
 
     return (
-      <View>
-        <Text>Done!</Text>
+      <View style={styles.container}>
+        {decks.map((deck) => <Deck key={deck.title} deck={deck} />)}
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+  },
+  defaultText: {
+    fontSize: 20,
+    alignSelf: 'center',
+    paddingTop: 30,
+  },
 })
 
 function mapStateToProps(decks) {
-  return {
-    decks
+  if (decks) {
+    return {
+      decks: Object.keys(decks).map(key => decks[key]),
+    }
+  } else {
+    return {
+      decks
+    }
   }
 }
 
