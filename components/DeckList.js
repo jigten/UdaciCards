@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
 import { getDecks, clearDecks } from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
@@ -26,6 +26,10 @@ class DeckList extends Component {
       })))
   }
 
+  renderItem = ( deck ) => {
+    return <Deck key={deck.title} deck={deck} />
+  }
+
   render() {
     const { decks } = this.props
     const { ready } = this.state
@@ -40,7 +44,11 @@ class DeckList extends Component {
 
     return (
       <View style={styles.container}>
-        {decks.map((deck) => <Deck key={deck.title} deck={deck} />)}
+        <FlatList
+          data={decks}
+          renderItem={this.renderItem}
+          keyExtractor={(deck, index) => index}
+        />
       </View>
     )
   }
