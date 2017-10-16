@@ -7,10 +7,12 @@ import {
   KeyboardAvoidingView,
   TextInput,
 } from 'react-native'
-import { saveDeckTitle, getDecks } from '../utils/api'
+import { saveDeckTitle } from '../utils/api'
 import { black } from '../utils/colors'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
 
-export default class NewDeck extends Component {
+class NewDeck extends Component {
   state = {
     title: ''
   }
@@ -18,6 +20,12 @@ export default class NewDeck extends Component {
   createDeck = () => {
     const { title } = this.state
     saveDeckTitle(title)
+      .then(() => this.props.dispatch(addDeck({
+        [title]: {
+          title,
+          questions: []
+        }
+      })))
       .then(() => this.setState({ title: '' }))
   }
 
@@ -76,3 +84,5 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 })
+
+export default connect()(NewDeck)

@@ -12,7 +12,6 @@ class DeckList extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-
     getDecks()
       .then((decks) => dispatch(receiveDecks(decks)))
       .then(() => this.setState(() => ({
