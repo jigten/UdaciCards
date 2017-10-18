@@ -3,13 +3,14 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import { yellow, white, black } from './utils/colors'
 
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList'
+import DeckView from './components/DeckView'
 
 function CustomStatusBar({ backgroundColor, ...props}) {
   return(
@@ -54,13 +55,28 @@ const Tabs = TabNavigator({
   }
 })
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  DeckView: {
+    screen: DeckView,
+    navigationOptions: {
+      headerTintColor: black,
+      headerStyle: {
+        backgroundColor: white,
+      }
+    }
+  }
+})
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
           <CustomStatusBar backgroundColor={white} bar-style='light-content' />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     );
