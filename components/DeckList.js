@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
-import { getDecks, clearDecks } from '../utils/api'
+import { getDecks, clearDecks, addCardToDeck } from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { AppLoading } from 'expo'
