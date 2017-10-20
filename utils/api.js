@@ -23,7 +23,7 @@ export function addCardToDeck (title, card) {
         ...decks,
         [title]: {
           ...decks[title],
-          questions: decks[title].questions.concat(card),
+          questions: [...decks[title].questions, card],
         }
       }
     })

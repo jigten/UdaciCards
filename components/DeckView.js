@@ -14,7 +14,6 @@ class DeckView extends Component {
 
   render() {
     const { deck } = this.props
-
     console.log(deck)
 
     return (
@@ -24,7 +23,14 @@ class DeckView extends Component {
           <Text style={styles.cardsText}>{deck.questions.length} cards</Text>
         </View>
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.addBtn}><Text style={styles.addBtnText}>Add Card</Text></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.addBtn}
+            onPress={() => this.props.navigation.navigate(
+              'NewQuestion',
+              { deckId: deck.title }
+            )}>
+            <Text style={styles.addBtnText}>Add Card</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.quizBtn}><Text style={styles.quizBtnText}>Start Quiz</Text></TouchableOpacity>
         </View>
       </View>

@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 40,
     textAlign: 'center',
+    marginRight: 20,
+    marginLeft: 20,
   },
   titleInput: {
     height: 50,
@@ -69,6 +71,8 @@ const styles = StyleSheet.create({
     borderColor: black,
     borderWidth: 2,
     borderRadius: 4,
+    padding: 4,
+    fontSize: 20,
   },
   button: {
     justifyContent: 'center',
