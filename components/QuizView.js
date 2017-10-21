@@ -7,6 +7,7 @@ class QuizView extends Component {
   state = {
     count: 0,
     correct: 0,
+    showAnswer: false,
   }
 
   static navigationOptions = () => {
@@ -19,12 +20,20 @@ class QuizView extends Component {
     this.setState((prevState) => ({
       correct: prevState.correct + 1,
       count: prevState.count + 1,
+      showAnswer: false,
     }));
   }
 
   answerIncorrect = () => {
     this.setState((prevState) => ({
       count: prevState.count + 1,
+      showAnswer: false,
+    }))
+  }
+
+  toggleAns = () => {
+    this.setState((prevState) => ({
+      showAnswer: !prevState.showAnswer,
     }))
   }
 
@@ -32,7 +41,7 @@ class QuizView extends Component {
 
     const { deck } = this.props
     const length = deck.questions.length
-    const { count, correct } = this.state
+    const { count, correct, showAnswer } = this.state
 
     if (count === deck.questions.length) {
       return (
@@ -65,9 +74,26 @@ class QuizView extends Component {
 
     return (
       <View style={styles.container}>
+        <Text style={styles.cardsLeftText}>{count + 1}/{length}</Text>
         <View style={styles.textContainer}>
-          <Text style={styles.titleText}>Question</Text>
-          <Text style={styles.cardsText}>Answer</Text>
+          {!showAnswer && (
+            <View>
+              <Text style={styles.titleText}>{deck.questions[count].question}</Text>
+              <TouchableOpacity
+                onPress={() => this.toggleAns()}>
+                <Text style={styles.cardsText}>Answer</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          {showAnswer && (
+            <View>
+              <Text style={styles.titleText}>{deck.questions[count].answer}</Text>
+              <TouchableOpacity
+                onPress={() => this.toggleAns()}>
+                <Text style={styles.cardsText}>Question</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity
@@ -140,6 +166,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     color: white,
+  },
+  cardsLeftText: {
+    alignSelf: 'flex-start',
+    fontSize: 20,
+    color: black,
+    padding: 10,
   },
 })
 
