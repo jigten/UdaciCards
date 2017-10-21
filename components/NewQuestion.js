@@ -30,6 +30,10 @@ class NewQuestion extends Component {
       answer,
     })))
     .then(() => this.setState({ question: '', answer: '' }))
+    .then(() => this.props.navigation.navigate(
+      'DeckView',
+      { deckId }
+    ))
   }
 
   render() {
