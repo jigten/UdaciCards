@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { black, red, green, white } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class QuizView extends Component {
   state = {
@@ -35,6 +36,11 @@ class QuizView extends Component {
     this.setState((prevState) => ({
       showAnswer: !prevState.showAnswer,
     }))
+  }
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   render() {

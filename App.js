@@ -7,6 +7,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import { yellow, white, black } from './utils/colors'
+import { setLocalNotification } from './utils/helpers'
 
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList'
@@ -91,7 +92,11 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
-  render() {
+  componentDidMount () {
+      setLocalNotification()
+  }
+  
+  render () {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
