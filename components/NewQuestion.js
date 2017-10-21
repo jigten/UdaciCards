@@ -6,6 +6,12 @@ import { addCardToDeck } from '../utils/api'
 import { black, white } from '../utils/colors'
 
 class NewQuestion extends Component {
+  static navigationOptions = () => {
+    return {
+      title: 'Add Card',
+    }
+  }
+
   state = {
     question: '',
     answer: '',

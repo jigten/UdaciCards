@@ -14,7 +14,6 @@ class DeckView extends Component {
 
   render() {
     const { deck } = this.props
-    console.log(deck)
 
     return (
       <View style={styles.container}>
@@ -29,9 +28,16 @@ class DeckView extends Component {
               'NewQuestion',
               { deckId: deck.title }
             )}>
-            <Text style={styles.addBtnText}>Add Card</Text>
+              <Text style={styles.addBtnText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.quizBtn}><Text style={styles.quizBtnText}>Start Quiz</Text></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.quizBtn}
+            onPress={() => this.props.navigation.navigate(
+              'QuizView',
+              { deckId: deck.title }
+            )}>
+              <Text style={styles.quizBtnText}>Start Quiz</Text>
+            </TouchableOpacity>
         </View>
       </View>
     )

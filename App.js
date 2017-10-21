@@ -12,6 +12,7 @@ import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList'
 import DeckView from './components/DeckView'
 import NewQuestion from './components/NewQuestion'
+import QuizView from './components/QuizView'
 
 function CustomStatusBar({ backgroundColor, ...props}) {
   return(
@@ -71,6 +72,15 @@ const MainNavigator = StackNavigator({
   },
   NewQuestion: {
     screen: NewQuestion,
+    navigationOptions: {
+      headerTintColor: black,
+      headerStyle: {
+        backgroundColor: white,
+      }
+    }
+  },
+  QuizView: {
+    screen: QuizView,
     navigationOptions: {
       headerTintColor: black,
       headerStyle: {
