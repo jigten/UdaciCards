@@ -38,11 +38,6 @@ class QuizView extends Component {
     }))
   }
 
-  componentDidMount() {
-    clearLocalNotification()
-      .then(setLocalNotification)
-  }
-
   render() {
 
     const { deck } = this.props
@@ -50,6 +45,10 @@ class QuizView extends Component {
     const { count, correct, showAnswer } = this.state
 
     if (count === deck.questions.length) {
+
+      clearLocalNotification()
+        .then(setLocalNotification)
+
       return (
         <View style={styles.container}>
           <View style={styles.textContainer}>
