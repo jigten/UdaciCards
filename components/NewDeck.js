@@ -27,6 +27,10 @@ class NewDeck extends Component {
         }
       })))
       .then(() => this.setState({ title: '' }))
+      .then(() =>  this.props.navigation.navigate(
+        'DeckView',
+        { deckId: title }
+      ))
   }
 
   render() {
