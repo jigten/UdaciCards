@@ -6,7 +6,7 @@ import reducer from './reducers'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
-import { yellow, white, black } from './utils/colors'
+import { yellow, white, black, gray } from './utils/colors'
 import { setLocalNotification } from './utils/helpers'
 
 import NewDeck from './components/NewDeck'
@@ -44,6 +44,7 @@ const Tabs = TabNavigator({
   },
   tabBarOptions: {
     activeTintColor: black,
+    inactiveTintColor: gray,
     style: {
       height: 56,
       backgroundColor: white,
@@ -95,7 +96,7 @@ export default class App extends React.Component {
   componentDidMount () {
       setLocalNotification()
   }
-  
+
   render () {
     return (
       <Provider store={createStore(reducer)}>
