@@ -4,7 +4,7 @@ A React-Native application created for the completion of the second project requ
 # Technologies/ Packages used
 - React/React-Native/Redux
 - Create React Native App
-- Expo
+- Expo [Link To Documentation](https://docs.expo.io/versions/latest/index.html)
 
 ## Getting Started
 These instructions will get you up and running with a copy of the project on your local machine for development and testing.
